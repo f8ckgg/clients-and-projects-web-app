@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Create New Project</h1>
+  <form [formGroup]="projectForm" (ngSubmit)="createProject()" class="form">
+  <mat-form-field appearance="fill">
+    <mat-label>Client</mat-label>
+    <mat-select formControlName="client">
+      <mat-option *ngFor="let client of clients$ | async" [value]="client.id">
+        {{ client.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Designer</mat-label>
+      <mat-select formControlName="designer">
+        <mat-option *ngFor="let designer of designers$ | async" [value]="designer.id">
+          {{ designer.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Link</mat-label>
+      <input matInput formControlName="link" type="text" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Адрес</mat-label>
+      <input matInput formControlName="address" type="text" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Метраж</mat-label>
+      <input matInput formControlName="square" type="text" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Create Project</button>
+  </form>
+</div>

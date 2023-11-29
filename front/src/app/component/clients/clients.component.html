@@ -1,0 +1,24 @@
+<div class="container" class="mat-elevation-z8">
+  <table mat-table [dataSource]="clients">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Имя </th>
+      <td mat-cell *matCellDef="let client"> {{ client.name }} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Почта </th>
+      <td mat-cell *matCellDef="let client"> {{ client.email }} </td>
+    </ng-container>
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let client">
+        <button mat-icon-button color="primary" (click)="viewClientDetails(client.id)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['name', 'email', 'details']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'email', 'details']"></tr>
+  </table>
+
+</div>
+<button mat-raised-button color="primary" class="submit-button" (click)="createClient()">Создать клиента</button>

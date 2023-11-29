@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="app.component.css">
+  <link href="https://cdn.jsdelivr.net/npm/@angular/material/prebuilt-themes/deeppurple-amber.css" rel="stylesheet">
+</head>
+<body class="mat-typography custom-theme">
+<header style="position: relative;">
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="toolbar-row">
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" (click)="updateLoggedInStatus()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item *ngIf="!isLoggedIn" routerLink="login">
+          <mat-icon>input</mat-icon>
+          <span>ЛОГИН</span>
+        </a>
+        <a mat-menu-item *ngIf="role === 'ADMIN'" routerLink="projects">
+          <mat-icon>folder</mat-icon>
+          <span>ПРОЕКТЫ</span>
+        </a>
+        <a mat-menu-item *ngIf="role === 'ADMIN'" routerLink="clients">
+          <mat-icon>people</mat-icon>
+          <span>КЛИЕНТЫ</span>
+        </a>
+        <a mat-menu-item *ngIf="role === 'ADMIN'" routerLink="bills">
+          <mat-icon>receipt</mat-icon>
+          <span>СЧЕТА</span>
+        </a>
+        <a mat-menu-item *ngIf="role === 'USER'" routerLink="projects">
+          <mat-icon>palette</mat-icon>
+          <span>ДИЗАЙНЕРСКИЕ ПРОЕКТЫ</span>
+        </a>
+        <a mat-menu-item *ngIf="isLoggedIn" routerLink="user">
+          <mat-icon>person</mat-icon>
+          <span>ЛИЧНЫЙ КАБИНЕТ</span>
+        </a>
+        <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>ВЫХОД</span>
+        </button>
+      </mat-menu>
+      <span class="logo" style="position: absolute; left: 50%; transform: translateX(-50%); font-size: 35px;">
+            <span class="logo-text">==КЛИЕНТЫ И ПРОЕКТЫ==</span>
+          </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+</body>
+</html>

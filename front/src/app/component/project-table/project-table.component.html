@@ -1,0 +1,76 @@
+<div>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Имя </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Link Column -->
+  <ng-container matColumnDef="link">
+    <mat-header-cell *matHeaderCellDef> Ссылка </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.link }} </mat-cell>
+  </ng-container>
+  <!-- Name Column -->
+  <ng-container matColumnDef="address">
+    <mat-header-cell *matHeaderCellDef> Адрес </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.address }} </mat-cell>
+  </ng-container>
+
+  <!-- Link Column -->
+  <ng-container matColumnDef="square">
+    <mat-header-cell *matHeaderCellDef> Метраж </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.square }} </mat-cell>
+  </ng-container>
+  <!-- Admin Column -->
+  <ng-container matColumnDef="client">
+    <mat-header-cell *matHeaderCellDef> Клиент </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.client.name }} </mat-cell>
+  </ng-container>
+  <!-- Admin Column -->
+  <ng-container matColumnDef="admin">
+    <mat-header-cell *matHeaderCellDef> Админ </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.admin.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Designer Column -->
+  <ng-container matColumnDef="designer">
+    <mat-header-cell *matHeaderCellDef> Дизайнер </mat-header-cell>
+    <mat-cell *matCellDef="let project"> {{ project.designer.name }} </mat-cell>
+  </ng-container>
+
+  <!-- Made Column -->
+  <ng-container matColumnDef="made">
+    <mat-header-cell *matHeaderCellDef> Сделан </mat-header-cell>
+    <mat-cell *matCellDef="let project">
+      <span *ngIf="project.made; else notMade"> Да </span>
+      <ng-template #notMade> Нет </ng-template>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Статус </mat-header-cell>
+    <mat-cell *matCellDef="let project">
+      <button mat-icon-button color="primary" (click)="StatusLink(project.id)">        <mat-icon>work</mat-icon></button>
+
+    </mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> Удалить </mat-header-cell>
+    <mat-cell *matCellDef="let project">
+      <button mat-icon-button color="warn" (click)="deleteProject(project.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>
+<button mat-raised-button color="primary" class="submit-button" (click)="createProject()">Create Property</button>
+</div>
